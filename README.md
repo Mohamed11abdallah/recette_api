@@ -87,21 +87,39 @@ Exécutez la commande suivante pour démarrer l'application, :
 - **URL** : `/recipes`
 - **Méthode HTTP** : `GET`
 - **Description** : Récupère toutes les recettes de la base de données.
-- **Exemple** : http://localhost:4000/api/recipes/
+- **Exemple** : http://localhost:4000/api/recipes
 - **Reponse** :
   ```bash
   [
     {
-      "id": 1,
-      "titre": "Spaguettue",
-      "ingredient": "Spagurttue viande Oignons pouvre_noir",
-      "type": "plat"
+        "id": 15,
+        "titre": "Tarte aux pommes maison",
+        "ingredient": "200g de farine, 100g de beurre, 4 pommes, 50g de sucre",
+        "type": "dessert"
     },
     {
-      "id": 2,
-      "titre": "Couscous",
-      "ingredient": "Viande OIgnons sel couscous",
-      "type": "plat"
+        "id": 16,
+        "titre": "Poulet au curry maison",
+        "ingredient": "500g de poulet, 2 cuillères à soupe de curry, 1 tasse de riz, 2 cuillères à soupe d'huile d'olive",
+        "type": "plat"
+    },
+    {
+        "id": 17,
+        "titre": "Salade niçoise maison",
+        "ingredient": "200g de thon, 100g de haricots verts, 2 tomates, 1 oignon, 2 cuillères à soupe d'huile d'olive",
+        "type": "entrée"
+    },
+    {
+        "id": 18,
+        "titre": "Couscous aux légumes maison",
+        "ingredient": "200g de couscous, 100g de légumes, 2 cuillères à soupe d'huile d'olive, sel et poivre",
+        "type": "plat"
+    },
+    {
+        "id": 19,
+        "titre": "Crème brûlée maison",
+        "ingredient": "200g de crème, 100g de sucre, 2 ?ufs, 1 cuillère à soupe de vanille",
+        "type": "dessert"
     }
   ]
   ```
@@ -111,15 +129,15 @@ Exécutez la commande suivante pour démarrer l'application, :
 - **URL** : `/recipes/:id`
 - **Méthode HTTP** : `GET`
 - **Description** : Récupère une recette spécifique à partir de son ID.
-- **Exemple URL** : http://localhost:4000/api/recipe/1
+- **Exemple URL** : http://localhost:4000/api/recipe/15
 - **Reponse** :
 
   ```bash
   {
-    "id": 1,
-    "titre": "Spaguettue",
-    "ingredient": "Spagurttue viande Oignons pouvre_noir",
-    "type": "plat"
+    "id": 15,
+    "titre": "Tarte aux pommes maison",
+    "ingredient": "200g de farine, 100g de beurre, 4 pommes, 50g de sucre",
+    "type": "dessert"
   }
   ```
 
@@ -133,14 +151,9 @@ Exécutez la commande suivante pour démarrer l'application, :
 
 ```bash
 {
-  "titre": "Spaguettue",
-  "ingredient": "Spagurttue viande Oignons pouvre_noir",
-  "type": "plat"
-},
-{
-  "titre": "Couscous",
-  "ingredient": "Viande OIgnons sel couscous",
-  "type": "plat"
+"titre": "Riz au poisson",
+"ingredient": "poisson, piment",
+"type": "plat"
 }
 ```
 
@@ -157,16 +170,16 @@ Exécutez la commande suivante pour démarrer l'application, :
 - **URL** : `/recipes/:id`
 - **Méthode HTTP** : `PUT`
 - **Description** : Met à jour les informations d'une recette existante en fonction de son ID.
-- **Exemple URL** : http://localhost:4000/api/recipe/2
+- **Exemple URL** : http://localhost:4000/api/recipe/20
 
 - **Corps de la requête** (JSON) :
 
   ```bash
-  {
-    "titre": "Couscous",
-    "ingredient": "Viande Oignons sel couscous",
-    "type": "plat"
-  }
+    {
+        "titre": "Crème maison",
+        "ingredient": "300g de crème, 100g de sucre, 2 ?ufs, 1 cuillère à soupe de vanille",
+        "type": "dessert"
+    }
   ```
 
 - **Reponse** :
@@ -182,7 +195,7 @@ Exécutez la commande suivante pour démarrer l'application, :
 - **URL** : `/recipes/:id`
 - **Méthode HTTP** : `DELETE`
 - **Description** : Supprime une recette existante en fonction de son ID.
-- **Exemple URL** : http://localhost:4000/api/recipe/34
+- **Exemple URL** : http://localhost:4000/api/recipe/20
 - **Reponse** :
 
 ```bash
@@ -197,7 +210,7 @@ Nous avons préparé une collection de requêtes Postman pour faciliter les test
 
 #### Étapes pour importer la collection :
 
-1. Télécharger la collection Postman exportée en cliquant [ici](./chemin/vers/votre/recette_db.postman_collection.json).
+1. Télécharger la collection Postman exportée en cliquant [ici](./collection.json).
 2. Ouvrez Postman.
 3. Cliquez sur **Importer** en haut à gauche.
 4. Sélectionnez le fichier `.json` exporté et cliquez sur **Importer**.
@@ -302,7 +315,7 @@ Remplacer 'your-dockerhub-username' par votre nom d'utilisateur docker
 
 - Lien de l'Image sur DockerHub:
 
-https://hub.docker.com/r/mohamedabdallahi/api_recette/tags
+https://hub.docker.com/r/mohamedabdallahi/api_recette
 
 - Lancer les conteneurs Docker :
 
