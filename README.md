@@ -248,6 +248,14 @@ Randomized with seed 38515.
 - Cette commande lancera tous les tests définis dans les fichiers de test, notamment dans le répertoire `spec`.
 - Le fichier principal de tests pour les opérations sur les recettes est `spec/recetteModel.spec.js`.
 
+## ESlint pour corriger le code
+
+cette commande ci-dessous vous permet d'analyser si ya des incohérent et le corriger
+
+```bash
+npm run lint
+```
+
 ## Comment formater et Analyser le code
 
 cette commande ci-dessous vous permet de formatter
@@ -256,71 +264,43 @@ cette commande ci-dessous vous permet de formatter
 npm run format
 ```
 
-cette commande ci-dessous vous permet d'analyser si ya des incohérent et le corriger
-
-```bash
-npm run lint
-```
-
-## Étapes pour construire et lancer le conteneur Docker
-
-- Assurez-vous d'avoir Docker et Docker Compose installés sur votre machine, ensuite :
-
-1. Créer le fichier Dockerfile : Si ce n'est pas déjà fait, créez un fichier Dockerfile à la racine de votre projet avec les instructions nécessaires pour construire l'image de votre application.
-
-2. Créer le fichier docker-compose.yml : Si vous utilisez Docker Compose, assurez-vous d'avoir un fichier docker-compose.yml configuré.
-
-3. Construire l'image Docker : À la racine de votre projet, exécutez la commande suivante pour construire l'image Docker :
-
-- Pour construire l'image Docker de l'API, utilisez la commande suivante :
-
-```bash
-docker build -t recette_api .
-```
-
-- Tester l'Image Localement : Après avoir construit l'image, vous pouvez la tester localement en exécutant la commande suivante :
-
-```bash
-docker run -p 4000:4000 recette_api
-```
-
-- Lancer le Conteneur avec Docker Compose : Pour lancer le conteneur en utilisant docker-compose, exécutez cette commande :
-
-```bash
-docker-compose up --build
-```
-
-- Déploye l’image sur DockerHub : Connexion à DockerHub
-  si vous n'etes pas connecté, pour vous connecter à votre compte DockerHub, utilisez la commande suivante :
-
-```bash
-docker login
-```
-
-- Taguer et Pousser l'Image vers DockerHub : Taguez l'image Docker pour la préparer à être poussée sur DockerHub :
-
-```bash
-docker tag recette_api your-dockerhub-username/api_recette:latest
-```
-
-- Enfin, poussez l'image taguée vers DockerHub :
-
-```bash
-docker push your-dockerhub-username/api_recette:latest
-```
-
-Remplacer 'your-dockerhub-username' par votre nom d'utilisateur docker
-
-## Containerisation Docker
+## Containerisation avec Docker:
 
 - Lien de l'Image sur DockerHub:
 
 https://hub.docker.com/r/mohamedabdallahi/api_recette
 
-- Lancer les conteneurs Docker :
+- Assurez-vous d'avoir Docker et Docker Compose installés sur votre machine
+
+1. Créer un fichier **Dockerfile** : Si ce n'est pas déjà fait, créez un fichier Dockerfile à la racine de votre projet avec les instructions nécessaires pour construire l'image de votre application.
+
+2. Créer le fichier **docker-compose.yml** : Si vous utilisez Docker Compose, assurez-vous d'avoir un fichier docker-compose.yml configuré.
+
+3. Pour construire le conteneurs Docker :
 
 ```bash
-docker-compose up -d
+docker-compose up --build
+```
+
+4. Connexion au **service MySQL** :
+
+```bash
+docker exec -it recette_db mysql -u root -p
+```
+
+5. Créer la base de données et les tables :
+
+```bash
+   DROP DATABASE IF EXISTS recette_db;
+   CREATE DATABASE IF NOT EXISTS  recette_db;
+   USE recette_db;
+
+   CREATE TABLE IF NOT EXISTS recettes (
+     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+     titre VARCHAR(255) NOT NULL UNIQUE,
+     ingredient text NOT NULL,
+     type VARCHAR(100) NOT NULL
+   );
 ```
 
 ## Auteur
